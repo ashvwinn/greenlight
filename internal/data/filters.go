@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/ASH-WIN-10/greenlight/internal/validator"
+	"slices"
 )
 
 type Filters struct {
@@ -30,10 +31,8 @@ func ValidateFilters(v *validator.Validator, f Filters) {
 }
 
 func (f Filters) sortColumn() string {
-	for _, safeValue := range f.SortSafelist {
-		if f.Sort == safeValue {
-			return strings.TrimPrefix(f.Sort, "-")
-		}
+	if slices.Contains(f.SortSafelist, f.Sort) {
+		return strings.TrimPrefix(f.Sort, "-")
 	}
 
 	panic("unsafe sort parameter: " + f.Sort)

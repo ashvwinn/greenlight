@@ -12,6 +12,7 @@ import (
 
 	"github.com/ASH-WIN-10/greenlight/internal/validator"
 	"github.com/julienschmidt/httprouter"
+	"maps"
 )
 
 type envelope map[string]any
@@ -34,9 +35,7 @@ func (app *application) writeJSON(w http.ResponseWriter, status int, data envelo
 	}
 	js = append(js, '\n')
 
-	for key, value := range headers {
-		w.Header()[key] = value
-	}
+	maps.Copy(w.Header(), headers)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
