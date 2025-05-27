@@ -9,6 +9,9 @@ require (
 
 require (
 	github.com/joho/godotenv v1.5.1
+	github.com/wneessen/go-mail v0.6.2
 	golang.org/x/crypto v0.38.0
 	golang.org/x/time v0.11.0
 )
+
+require golang.org/x/text v0.25.0 // indirect
