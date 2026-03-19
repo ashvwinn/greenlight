@@ -11,15 +11,16 @@ import (
 )
 
 const (
-	ScopeActivation = "activation"
+	ScopeActivation     = "activation"
+	ScopeAuthentication = "authentication"
 )
 
 type Token struct {
-	PlainText string
-	Hash      []byte
-	UserID    int64
-	Expiry    time.Time
-	scope     string
+	PlainText string    `json:"token"`
+	Hash      []byte    `json:"-"`
+	UserID    int64     `json:"-"`
+	Expiry    time.Time `json:"expiry"`
+	scope     string    `json:"-"`
 }
 
 type TokenModel struct {
